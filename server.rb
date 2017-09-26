@@ -1,22 +1,12 @@
 require 'sinatra'
 require 'omniauth'
-require 'omniauth-vkontakte'
 
 
 class Server < Sinatra::Base
-  use Rack::Session::Cookie
-  use OmniAuth::Builder do
-    provider :vkontakte, ENV['VK_API_KEY'], ENV['VK_API_SECRET'],
-      {
-        scope:      'friends,audio',
-        display:    'popup',
-        lang:       'en',
-        image_size: 'original'
-      }
-  end
-
   get '/' do
     <<-HTML
+			<meta name='loginza-verification' content='9db5821c56ad8db522bf5ccba8579008' />
+
       <a href='/auth/vkontakte'>Sign in with VK</a>
     HTML
   end
